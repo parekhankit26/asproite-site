@@ -7,22 +7,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Lead {
+model SiteSettings {
+  id              String   @id @default(cuid())
+  companyName     String
+  website         String
+  heroTitle       String
+  heroSubtitle    String
+  aboutTitle      String
+  aboutDescription String
+  contactEmail    String
+  contactPhone    String
+  contactAddress  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model MenuItem {
   id        String   @id @default(cuid())
-  name      String
-  email     String
-  company   String?
-  phone     String?
-  message   String
-  source    String   @default("website")
+  label     String
+  path      String
+  order     Int      @default(0)
   createdAt DateTime @default(now())
 }
 
 model Service {
   id          String   @id @default(cuid())
   title       String
+  slug        String   @unique
+  shortDesc   String
   description String
   icon        String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  summary     String
+  imageUrl    String?
+  result      String
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -35,5 +61,17 @@ model Testimonial {
   company   String
   quote     String
   rating    Int      @default(5)
+  createdAt DateTime @default(now())
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  message   String
+  service   String?
+  source    String   @default("website")
   createdAt DateTime @default(now())
 }

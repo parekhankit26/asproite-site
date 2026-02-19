@@ -1,46 +1,44 @@
 # Asproite Cloud and Consultancy Ltd - Dynamic Website
 
-A modern, responsive, dynamic business website with:
+A fully dynamic, responsive business website with:
 
-- Premium hero + services + testimonials sections
-- Lead capture form
-- AI lead assistant chat widget
-- Dynamic backend with Prisma + SQLite
-- Admin leads dashboard (`/admin`)
+- Multi-page frontend: Home, About, Services (with dropdown), Portfolio, Contact
+- Dynamic menu and content sections from database
+- Lead capture form + AI lead assistant chat
+- Dynamic backend APIs for settings, services, menu, portfolio, and leads
+- Admin dashboard (`/admin`) to manage key content and view leads
 
-## 1) Install
+## Tech Stack
+
+- Next.js (App Router)
+- Prisma ORM
+- SQLite (easy local setup; switch to PostgreSQL for production)
+- Tailwind CSS
+
+## Setup
 
 ```bash
 npm install
-```
-
-## 2) Configure env
-
-```bash
-cp .env.example .env
-```
-
-(Optional) Add `OPENAI_API_KEY` for live AI responses.
-
-## 3) Prepare database
-
-```bash
-npx prisma migrate dev --name init
+copy .env.example .env
+npx prisma migrate dev
 npm run seed
-```
-
-## 4) Start
-
-```bash
 npm run dev
 ```
 
 Open:
 - Website: `http://localhost:3000`
-- Leads dashboard: `http://localhost:3000/admin`
+- Admin: `http://localhost:3000/admin`
 
-## API
+## API Endpoints
 
-- `POST /api/leads` - submit lead
-- `GET /api/leads` - list leads
-- `POST /api/chat` - AI assistant chat
+- `GET /api/content`
+- `GET/POST /api/menu`
+- `GET/POST /api/services`
+- `GET/POST /api/portfolio`
+- `GET/PUT /api/settings`
+- `GET/POST /api/leads`
+- `POST /api/chat`
+
+## Production Note
+
+For production deployment, use PostgreSQL and set `DATABASE_URL` accordingly.
