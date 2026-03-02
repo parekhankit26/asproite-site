@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "vite build && cp dist/index.html dist/404.html",
     "start": "next start",
     "lint": "next lint",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
+    "prisma: generate": "prisma generate",
+    "prisma: migrate": "prisma migrate dev",
     "seed": "node prisma/seed.js"
   },
   "dependencies": {
